@@ -19,3 +19,9 @@ Recommended
 Run
 ---
 <code>supervisor http-router.js >> logs/access_log</code>
+
+
+To-do
+-----
+* Move <code>servers</code> to config file
+* Move listening port to config file
