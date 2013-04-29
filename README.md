@@ -23,5 +23,6 @@ Run
 
 To-do
 -----
-* Move <code>servers</code> to config file
+* Move servers list to config file
+ * Allow server port numbers
 * Move listening port to config file
