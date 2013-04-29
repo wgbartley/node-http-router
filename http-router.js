@@ -10,13 +10,8 @@ var server = proxy.createServer(function(req, res, proxy) {
 	// A microsecond variable to track requests
 	var mt = microtime.nowDouble().toString();
 
-	if(mt.length<16)
-		mt += '0';
-
 	// Get the client IP
 	var ip = req.connection.remoteAddress;
-
-	var responses = [];
 
 	// Parse the requested host
 	var host = req.headers.host.toLowerCase();
@@ -83,49 +78,8 @@ var server = proxy.createServer(function(req, res, proxy) {
 			}
 
 			http_res.on('data', function(chunk) {});
-
-			//complete(server, mt, ip, host, url, http_res.statusCode);
 		});
 	}
-
-
-	/* function complete(server, mt, ip, host, url, status_code) {
-		// Add to the reqs array
-		responses.push({
-			'server': server,
-			'mt': mt,
-			'ip': ip,
-			'host': host,
-			'url': url,
-			'status_code': status_code
-		});
-
-
-		// If we don't have all the request info back, return early
-		if(responses.length==servers.length) {
-			for(var i in responses)
-				if(responses[i].status_code>500)
-					continue;
-				else {
-					_log('proxy', mt, ip, host, url, responses[i].server);
-
-					// Add it to the routing table
-					routing_table.push({
-						'host': host,
-						'server': responses[i].server
-					});
-
-					proxy.proxyRequest(req, res, {
-						host: responses[i].server,
-						port: 80
-					});
-
-					return;
-				}
-
-			res.end();
-		}
-	} */
 });
 
 
